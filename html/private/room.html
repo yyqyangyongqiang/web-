@@ -1,0 +1,135 @@
+<html>
+
+<head>
+    <title>chat UI</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="https://blog.csdn.net/q475254344">
+    <link href="../../public/chat.css" rel="stylesheet">
+
+</head>
+<script>
+    document.getElementsByTagName('body').height = window.innerHeight;
+</script>
+<link rel="stylesheet" href="chat.css">
+
+<body class="box">
+    <div class="leftbar">
+        <ul>
+            <li><a style="color:azure;" href="">私聊</a></li>
+            <li><a  href="../group/group.html">频道聊天</a></li>
+            <li><a href="../all/all.html">群发聊天</a></li>
+        </ul>
+    </div>
+    <div id="app" class="container">
+        <div class="chatbox">
+            <div class="chatleft">
+                <div class="center">
+                    <ul>
+                        <li>
+                            <span>用户列表</span>
+                        </li>
+                        <li>
+                            <select name="" v-model="to" id="">
+                                <option value="">发送给所有用户</option>
+                                <option :value="k"  v-for="(v,k) in UserList">{{v}}</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chatright">
+                <div class="top">
+                    <span style="margin-left: 20px;">小王</span>
+                    <i class="fas fa-ellipsis-v" style="font-size: 1.4em; position: absolute; right: 20px; color: gray;"></i>
+                </div>
+                <div class="center">
+                    <ul>
+                        <li class="msgleft" v-for="(v,k) in messages">
+                            <p class="msgcard">{{v}}</p>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="footer">
+                    <textarea v-model="content" maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none; "
+                        placeholder="请在此输入要发送的内容..."></textarea>
+                    <button @click="submit" class="sendbtn">发送</button>
+                </div>
+                <p>
+                    后台出自本人
+                    <br>
+                    前台界面；
+                    作者：q475254344
+                    来源：CSDN
+                    原文：https://blog.csdn.net/q475254344/article/details/80325514
+                    版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../../public/vue.js"></script>
+<script>
+
+    new Vue({
+        el:'#app',
+        data: {
+            ws:'',
+            UserList:[],
+            content:'',
+            to:'',
+            messages:[],
+        },
+        created:function(){
+            var token = localStorage.getItem('jwt_token');
+            if(token != undefined){            
+                this.ws = new WebSocket('ws://127.0.0.1:9999?token='+token);
+                this.ws.onopen = this.open;
+                this.ws.onmessage = this.message
+            }else{
+                location.href = "login.html";
+            }
+        },
+        methods:{
+            open:function(){
+                alert("连线成功");
+            },
+            message:function(e){
+                let data = JSON.parse(e.data);
+                if(data['type'] == 'user'){
+                    this.UserList = data['users'];
+                }else{
+                    this.messages.push(data['message']);
+                }
+            },
+            submit:function(){
+                if(this.to==''){
+                    this.ws.send('all:'+this.content);
+                    this.content = '';
+                }else{
+                    this.ws.send(this.to+':'+this.content);
+                    this.content = '';
+                }
+                
+            }
+            
+        }  
+    })
+    // 从百度里找到的一个可以接收所有 URL 上?后的参数的函数
+    // 这个函数会解析 url 上的参数并返回一个对象，保存所有的参数
+    // 返回数据：{id:1}
+    function GetRequest() {   
+        var url = location.search; //获取url中"?"符后的字串   
+        var theRequest = new Object();   
+        if (url.indexOf("?") != -1) {   
+            var str = url.substr(1);   
+            strs = str.split("&");   
+            for(var i = 0; i < strs.length; i ++) {   
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);   
+            }   
+        }   
+        return theRequest;   
+    }   
+    
+    </script>
