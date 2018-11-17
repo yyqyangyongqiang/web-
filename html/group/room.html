@@ -7,6 +7,11 @@
     <link href="../../public/chat.css" rel="stylesheet">
 
 </head>
+<style>
+    [v-cloak]{
+       display:none;
+    }
+ </style>
 <script>
     document.getElementsByTagName('body').height = window.innerHeight;
 </script>
@@ -15,20 +20,15 @@
 <body class="box">
     <div class="leftbar">
         <ul>
-            <li></li><a href="../private/group.html">私聊</a></li>
-            <li><a style="color:azure;" href="./group.html">频道聊天</a></li>
-            <li><a href="../all/all.html">群发聊天</a></li>
+            <li></li><a href="../private/room.html">私聊</a></li>
+            <li><a style="color:azure;" href="">频道聊天</a></li>
         </ul>
     </div>
-    <div id="app" class="container">
+    <div id="app" class="container" v-clock>
         <div class="chatbox">
             <div class="chatleft">
                 <div class="center">
                     <ul>
-                        <li v-for="(v,k) in rooms">
-                            <p><a :href="'room.html?id='+v.id">{{v.title}}</a></p>
-                            <p>主播：{{v.username}}</p>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -39,16 +39,16 @@
                 </div>
                 <div class="center">
                     <ul>
-                        <li class="msgleft">
-                            <p class="msgcard"> </p>
+                        <li class="msgleft" v-for="(v,k) in messages">
+                            <p class="msgcard">{{v}}</p>
                         </li>
 
                     </ul>
                 </div>
                 <div class="footer">
-                    <textarea maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none; "
+                    <textarea v-model="content" maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none; "
                         placeholder="请在此输入要发送的内容..."></textarea>
-                    <button class="sendbtn">发送</button>
+                    <button @click="submit" class="sendbtn">发送</button>
                 </div>
                 <p>
                     后台出自本人
@@ -70,31 +70,48 @@
     new Vue({
         el:'#app',
         data: {
-            rooms: [
-                {
-                    id: 1,
-                    title: '这个世界会好吗？',
-                    username: '李志'
-                },
-                {
-                    id: 2,
-                    title: 'PHP',
-                    username: '大雷'
-                }
-            ]
+            ws:null,
+            content:'',
+            messages:[],
         },
         created:function(){
-            
+            var url = this.getQueryVariable;
+            var id = url('id');
             var token = localStorage.getItem('jwt_token');
             if(token != undefined){          
                 // this.ws = new WebSocket('协议：//域名：端口');  token 服务器返回的JWT加密过的数据
-                this.ws = new WebSocket('ws://127.0.0.1:9999?token='+token);
+                this.ws = new WebSocket('ws://127.0.0.1:9999?token='+token+'&id='+id);
                 this.ws.onopen = this.open;
-                this.ws.onmessage = this.message
+                this.ws.onmessage = this.message;
             }else{
                 location.href = "../private/login.html";
             }
-        }
+        },
+       methods:{
+            open:function(){
+               alert("连接成功");
+            },
+            getQueryVariable:function (variable)
+            {
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i=0;i<vars.length;i++) {
+                        var pair = vars[i].split("=");
+                        if(pair[0] == variable){return pair[1];}
+                }
+                return(false);
+            },
+            message:function(e){
+                let data = JSON.parse(e.data);
+                this.messages.push(data['message']);
+            },
+            submit:function(){
+                // 向服务器发送数据
+                this.ws.send(this.content);
+                // 清空输入框
+                this.content = '';
+            }
+       }
     })
     
     </script>

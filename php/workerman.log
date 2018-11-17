@@ -1,0 +1,63 @@
+2018-11-15 02:11:35 pid:1 Error: Call to a member function send() on null in D:\shixiaoxia\tongxing\php\room.php:90
+Stack trace:
+#0 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), '\xE4\xBD\xA0\xE5\xA5\xBD\xE5\x95\x8A')
+#1 D:\shixiaoxia\tongxing\php\Workerman-master\Connection\TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), '\xE4\xBD\xA0\xE5\xA5\xBD\xE5\x95\x8A')
+#2 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #20)
+#3 D:\shixiaoxia\tongxing\php\Workerman-master\Events\Select.php(294): call_user_func_array(Array, Array)
+#4 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(2321): Workerman\Events\Select->loop()
+#5 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(1315): Workerman\Worker->run()
+#6 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#7 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(507): Workerman\Worker::forkWorkers()
+#8 D:\shixiaoxia\tongxing\php\room.php(119): Workerman\Worker::runAll()
+#9 {main}
+2018-11-15 02:11:36 pid:1 Worker process terminated
+2018-11-15 02:11:59 pid:1 Error: Call to a member function send() on null in D:\shixiaoxia\tongxing\php\room.php:90
+Stack trace:
+#0 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), '\xE4\xBD\xA0\xE5\xA5\xBD\xE5\x95\x8A')
+#1 D:\shixiaoxia\tongxing\php\Workerman-master\Connection\TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), '\xE4\xBD\xA0\xE5\xA5\xBD\xE5\x95\x8A')
+#2 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #20)
+#3 D:\shixiaoxia\tongxing\php\Workerman-master\Events\Select.php(294): call_user_func_array(Array, Array)
+#4 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(2321): Workerman\Events\Select->loop()
+#5 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(1315): Workerman\Worker->run()
+#6 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#7 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(507): Workerman\Worker::forkWorkers()
+#8 D:\shixiaoxia\tongxing\php\room.php(119): Workerman\Worker::runAll()
+#9 {main}
+2018-11-15 02:11:59 pid:1 Worker process terminated
+2018-11-15 02:16:18 pid:1 Error: Call to a member function send() on null in D:\shixiaoxia\tongxing\php\room.php:95
+Stack trace:
+#0 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), '\xE7\x94\xB7\xE4\xBA\xBA')
+#1 D:\shixiaoxia\tongxing\php\Workerman-master\Connection\TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), '\xE7\x94\xB7\xE4\xBA\xBA')
+#2 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #20)
+#3 D:\shixiaoxia\tongxing\php\Workerman-master\Events\Select.php(294): call_user_func_array(Array, Array)
+#4 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(2321): Workerman\Events\Select->loop()
+#5 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(1315): Workerman\Worker->run()
+#6 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#7 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(507): Workerman\Worker::forkWorkers()
+#8 D:\shixiaoxia\tongxing\php\room.php(124): Workerman\Worker::runAll()
+#9 {main}
+2018-11-15 02:16:18 pid:1 Worker process terminated
+2018-11-15 02:18:42 pid:1 Error: Call to a member function send() on null in D:\shixiaoxia\tongxing\php\room.php:95
+Stack trace:
+#0 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), 'nizhidao ')
+#1 D:\shixiaoxia\tongxing\php\Workerman-master\Connection\TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), 'nizhidao ')
+#2 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #20)
+#3 D:\shixiaoxia\tongxing\php\Workerman-master\Events\Select.php(294): call_user_func_array(Array, Array)
+#4 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(2321): Workerman\Events\Select->loop()
+#5 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(1315): Workerman\Worker->run()
+#6 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#7 D:\shixiaoxia\tongxing\php\Workerman-master\Worker.php(507): Workerman\Worker::forkWorkers()
+#8 D:\shixiaoxia\tongxing\php\room.php(124): Workerman\Worker::runAll()
+#9 {main}
+2018-11-15 02:18:42 pid:1 Worker process terminated
+2018-11-15 02:19:10 pid:1 Worker process terminated
+2018-11-15 02:19:35 pid:1 Worker process terminated
+2018-11-15 02:20:01 pid:1 Worker process terminated
+2018-11-15 02:20:47 pid:1 Worker process terminated
+2018-11-15 02:21:11 pid:1 Worker process terminated
+2018-11-15 02:22:05 pid:1 Worker process terminated
+2018-11-15 02:22:43 pid:1 Worker process terminated
+2018-11-15 02:25:28 pid:1 Worker process terminated
+2018-11-15 02:32:15 pid:1 Worker process terminated
+2018-11-15 02:32:53 pid:1 Worker process terminated
+2018-11-15 02:34:01 pid:1 Worker process terminated
